@@ -1,0 +1,42 @@
+model User {
+  id              Int        @id @default(autoincrement())
+  email           String     @unique
+  name            String?
+  password        String?
+  is_activated    Boolean?   @default(false)
+  resetpassword   String?
+  activation_link String?
+  roles           UserRole[]
+}
+
+model Role {
+  id          Int              @id @default(autoincrement())
+  role_name   String
+  permissions RolePermission[]
+  users       UserRole[]
+}
+
+model Permission {
+  id                     Int              @id @default(autoincrement())
+  permission_name        String
+  permission_description String?
+  roles                  RolePermission[]
+}
+
+model UserRole {
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId Int
+
+  @@id([userId, roleId])
+}
+
+model RolePermission {
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId       Int
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  permissionId Int
+
+  @@id([roleId, permissionId])
+}
