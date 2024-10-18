@@ -51,7 +51,11 @@ Auth Service — это rest API сервис аутентификации и а
    docker-compose up -d
    ```
 
-5. Запустите приложение:
+5. Запустите миграции:
+   ```bash
+   npx prisma migrate reset
+   ```
+6. Запустите приложение:
    ```bash
    npm run start:dev
    ```
