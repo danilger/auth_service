@@ -40,10 +40,15 @@ Auth Service — это rest API сервис аутентификации и а
 
 3. Создайте файл `.env` в корневом каталоге со следующим содержимым:
    ```env
-   HOST=localhost
-   PORT=5000
-   DATABASE_URL=postgresql://user:password@localhost:5432/database
-   JWT_SECRET=your_jwt_secret
+      DATABASE_URL="postgresql://postgres:postgres@localhost:5555/database?schema=public"
+      HOST=http://127.0.0.1
+      PORT=5000
+      MAIL_HOST=smtp.gmail.com
+      MAIL_PORT=465
+      MAIL_SECURE=true
+      MAIL_USER=your_email@gmail.com
+      MAIL_PASSWORD=your_password
+      SECRET_KEY=your_secret_key
    ```
 
 4. Запустите базу данных PostgreSQL с помощью Docker:
